@@ -8,18 +8,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implémentation DAO pour les membres avec MySQL.
- */
-public class MembreDAOImpl implements MembreDAO {
 
-    /**
-     * Mappe un ResultSet à un objet Membre.
-     *
-     * @param rs le ResultSet
-     * @return l'objet Membre
-     * @throws SQLException si une erreur SQL survient
-     */
+public class MembreDAOImpl implements MembreDAO {
     private Membre mapResultSetToEntity(ResultSet rs) throws SQLException {
         return new Membre(
                 rs.getInt("id"),
@@ -141,3 +131,4 @@ public class MembreDAOImpl implements MembreDAO {
         return findByEmail(email) != null;
     }
 }
+
