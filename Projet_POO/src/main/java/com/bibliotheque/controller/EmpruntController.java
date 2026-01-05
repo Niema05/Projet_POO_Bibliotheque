@@ -198,9 +198,8 @@ public class EmpruntController {
         }
     }
 
-    /**
-     * Affiche les emprunts en cours.
-     */
+    // Affiche les emprunts en cours.
+     
     @FXML
     public void handleAfficherEnCours() {
         try {
@@ -212,9 +211,8 @@ public class EmpruntController {
         }
     }
 
-    /**
-     * Affiche les emprunts en retard.
-     */
+    // Affiche les emprunts en retard.
+     
     @FXML
     public void handleAfficherEnRetard() {
         try {
@@ -226,9 +224,8 @@ public class EmpruntController {
         }
     }
 
-    /**
-     * Affiche tous les emprunts.
-     */
+    // Affiche tous les emprunts.
+    
     @FXML
     public void handleAfficherTous() {
         try {
@@ -238,9 +235,8 @@ public class EmpruntController {
         }
     }
 
-    /**
-     * Affiche une alerte d'erreur.
-     */
+    // Affiche une alerte d'erreur.
+    
     private void afficherErreur(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titre);
@@ -248,9 +244,8 @@ public class EmpruntController {
         alert.showAndWait();
     }
 
-    /**
-     * Affiche une alerte de succès.
-     */
+    // Affiche une alerte de succès.
+     
     private void afficherSucces(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);
@@ -258,3 +253,4 @@ public class EmpruntController {
         alert.showAndWait();
     }
 }
+
