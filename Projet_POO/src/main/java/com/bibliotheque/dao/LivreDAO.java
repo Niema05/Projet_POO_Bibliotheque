@@ -10,33 +10,22 @@ public interface LivreDAO extends DAO<Livre> {
   
     List<Livre> findByAuteur(String auteur) throws SQLException;
 
-    /**
-     * Recherche des livres par titre.
-     * @return une liste de livres correspondant au titre
-     * @throws SQLException si une erreur SQL survient
-     */
+    // Recherche des livres par titre.
+     
     List<Livre> findByTitre(String titre) throws SQLException;
 
-    /**
-     * Récupère tous les livres disponibles.
-     * @return une liste de livres disponibles
-     * @throws SQLException si une erreur SQL survient
-     */
+    // Récupère tous les livres disponibles.
+     
     List<Livre> findDisponibles() throws SQLException;
 
-    /**
-     * Recherche un livre par ISBN.
-     * @return le livre trouvé, null sinon
-     * @throws SQLException si une erreur SQL survient
-     */
+    // Recherche un livre par ISBN.
+
     Livre findByISBN(String isbn) throws SQLException;
 
-       /**
-       Vérifie si un livre avec cet ISBN existe déjà
-     * @return true si le livre existe, false sinon
-     * @throws SQLException si une erreur SQL survient
-     */
+    //Vérifie si un livre avec cet ISBN existe déjà
+  
     boolean existsByISBN(String isbn) throws SQLException;
 }
+
 
 
