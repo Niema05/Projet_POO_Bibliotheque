@@ -1,23 +1,13 @@
 package com.bibliotheque.model;
 
-/**
- * Classe représentant un livre dans la bibliothèque.
- */
+
 public class Livre extends Document implements Empruntable {
     private String isbn;
     private String auteur;
     private int anneePublication;
     private boolean disponible;
 
-    /**
-     * Constructeur d'un livre.
-     *
-     * @param isbn               l'ISBN du livre (format 978-XXXXXXXXXX)
-     * @param titre              le titre du livre
-     * @param auteur             l'auteur du livre
-     * @param anneePublication   l'année de publication
-     * @param disponible         la disponibilité du livre
-     */
+  
     public Livre(String isbn, String titre, String auteur, int anneePublication, boolean disponible) {
         super(isbn, titre);
         this.isbn = isbn;
@@ -26,12 +16,7 @@ public class Livre extends Document implements Empruntable {
         this.disponible = disponible;
     }
 
-    /**
-     * Calcule la pénalité de retard pour un livre.
-     * Pénalité : 2 DH par jour de retard.
-     *
-     * @return la pénalité en DH
-     */
+   
     @Override
     public double calculerPenaliteRetard() {
         return 2.0; // 2 DH par jour
@@ -96,3 +81,4 @@ public class Livre extends Document implements Empruntable {
                 '}';
     }
 }
+
