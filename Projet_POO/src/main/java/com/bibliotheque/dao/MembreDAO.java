@@ -15,6 +15,10 @@ public interface MembreDAO extends DAO<Membre> {
      * @return le membre trouvé, null sinon
      * @throws SQLException si une erreur SQL survient
      */
+    void save(Membre membre) throws SQLException();
+    void update(Membre membre) throws SQLException();
+    void delete(int id) throws SQLException();
+
     Membre findByEmail(String email) throws SQLException;
 
     /**
@@ -43,3 +47,4 @@ public interface MembreDAO extends DAO<Membre> {
      */
     boolean existsByEmail(String email) throws SQLException;
 }
+
