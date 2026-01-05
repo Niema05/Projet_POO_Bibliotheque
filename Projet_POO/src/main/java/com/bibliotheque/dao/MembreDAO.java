@@ -4,13 +4,8 @@ import com.bibliotheque.model.Membre;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Interface DAO pour les membres.
- */
 public interface MembreDAO extends DAO<Membre> {
-    /**
-     * throws SQLException si une erreur SQL survient
-     */
+   
     void save(Membre membre) throws SQLException();
     void update(Membre membre) throws SQLException();
     void delete(int id) throws SQLException();
@@ -38,5 +33,6 @@ public interface MembreDAO extends DAO<Membre> {
      */
     boolean existsByEmail(String email) throws SQLException;
 }
+
 
 
