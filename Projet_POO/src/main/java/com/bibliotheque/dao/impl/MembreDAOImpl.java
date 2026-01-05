@@ -44,19 +44,6 @@ public class MembreDAOImpl implements MembreDAO {
         }
     }
 
-    @Override
-    public Membre findByIntId(int id) throws SQLException {
-        String sql = "SELECT * FROM membres WHERE id = ?";
-        try (PreparedStatement stmt = DatabaseConnection.getInstance().getConnection().prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return mapResultSetToEntity(rs);
-                }
-            }
-        }
-        return null;
-    }
 
     @Override
     public List<Membre> findAll() throws SQLException {
@@ -131,4 +118,5 @@ public class MembreDAOImpl implements MembreDAO {
         return findByEmail(email) != null;
     }
 }
+
 
