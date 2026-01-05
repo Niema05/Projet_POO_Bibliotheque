@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.bibliotheque.controller.MainController">
+    <style>
+        -fx-font-family: 'Segoe UI', 'Arial', sans-serif;
+    </style>
+    
+    <top>
+        <VBox style="-fx-background-color: linear-gradient(to right, #2c3e50, #34495e); -fx-padding: 15px 20px;">
+            <Label text="📚 Système de Gestion de Bibliothèque" 
+                   style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Label text="Gérez vos livres, membres et emprunts facilement" 
+                   style="-fx-font-size: 12; -fx-text-fill: #ecf0f1; -fx-opacity: 0.9;"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: #ecf0f1; -fx-tab-min-height: 45px; -fx-tab-min-width: 120px;">
+            <Tab text="📖 Livres" closable="false" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-padding: 8px 20px;"/>
+            <Tab text="👥 Membres" closable="false" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-padding: 8px 20px;"/>
+            <Tab text="🔄 Emprunts" closable="false" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-padding: 8px 20px;"/>
+        </TabPane>
+    </center>
+</BorderPane>
+

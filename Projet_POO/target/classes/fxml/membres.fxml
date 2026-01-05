@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+    fx:controller="com.bibliotheque.controller.MembreController" spacing="15" style="-fx-padding: 15; -fx-background-color: #f5f7fa;">
+    
+    <!-- Formulaire d'ajout/modification -->
+    <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-border-width: 1;">
+        <Label text="👤 Formulaire de Membre" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
+        
+        <GridPane hgap="15" vgap="12" style="-fx-padding: 10 0 0 0;">
+            <columnConstraints>
+                <ColumnConstraints minWidth="80" prefWidth="100"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints minWidth="80" prefWidth="100"/>
+                <ColumnConstraints hgrow="ALWAYS" prefWidth="150"/>
+            </columnConstraints>
+            
+            <Label text="Nom:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="tfNom" GridPane.columnIndex="1" GridPane.rowIndex="0" 
+                       promptText="Nom de famille" style="-fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 4;"/>
+            
+            <Label text="Actif:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <CheckBox fx:id="cbActif" GridPane.columnIndex="3" GridPane.rowIndex="0" selected="true"/>
+            
+            <Label text="Prénom:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="tfPrenom" GridPane.columnIndex="1" GridPane.rowIndex="1" 
+                       promptText="Prénom" style="-fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 4;"/>
+            
+            <Label text="Email:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" 
+                       promptText="exemple@mail.com" style="-fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 4;"/>
+            
+            <!-- Boutons -->
+            <HBox spacing="10" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="3" style="-fx-padding: 15 0 0 0;">
+                <Button fx:id="btnAjouter" text="✓ Ajouter" onAction="#handleAjouter"
+                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;"/>
+                <Button fx:id="btnModifier" text="✎ Modifier" onAction="#handleModifier"
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;"/>
+                <Button fx:id="btnSupprimer" text="🚫 Désactiver" onAction="#handleSupprimer"
+                        style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;"/>
+            </HBox>
+        </GridPane>
+    </VBox>
+    
+    <!-- Barre de recherche -->
+    <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-border-width: 1;">
+        <Label text="🔍 Recherche" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
+        
+        <HBox spacing="10" style="-fx-padding: 10 0 0 0;">
+            <TextField fx:id="tfRecherche" HBox.hgrow="ALWAYS" 
+                       promptText="Recherchez par nom, prénom ou email..." style="-fx-padding: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 4;"/>
+            <Button fx:id="btnRechercher" text="Rechercher" 
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;" 
+                    onAction="#handleRechercher" prefWidth="120"/>
+        </HBox>
+    </VBox>
+    
+    <!-- Tableau des membres -->
+    <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-border-width: 1;" VBox.vgrow="ALWAYS">
+        <Label text="👥 Liste des Membres" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
+        
+        <TableView fx:id="tableViewMembres" VBox.vgrow="ALWAYS" style="-fx-padding: 10 0 0 0;">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60" sortable="true"/>
+                <TableColumn fx:id="colNom" text="Nom" prefWidth="140" sortable="true"/>
+                <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="140" sortable="true"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="220" sortable="true"/>
+                <TableColumn fx:id="colActif" text="Actif" prefWidth="100" sortable="true"/>
+                <TableColumn fx:id="colDateInscription" text="Date d'inscription" prefWidth="140" sortable="true"/>
+            </columns>
+            <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+        </TableView>
+    </VBox>
+</VBox>

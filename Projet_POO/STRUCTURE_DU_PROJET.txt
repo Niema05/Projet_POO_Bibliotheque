@@ -1,0 +1,203 @@
+STRUCTURE DU PROJET - SYSTÈME DE GESTION DE BIBLIOTHÈQUE
+========================================================
+
+Projet_POO/
+│
+├── pom.xml                           # Configuration Maven
+├── database.sql                      # Script de création base de données
+├── README.md                         # Documentation principale
+├── GUIDE_DEMARRAGE.md               # Guide de démarrage rapide
+├── .gitignore                        # Fichiers à ignorer en Git
+├── .env.example                      # Configuration exemple
+│
+├── src/main/java/com/bibliotheque/
+│   ├── Main.java                     # Point d'entrée JavaFX
+│   │
+│   ├── model/                        # COUCHE MODÈLE
+│   │   ├── Document.java             # Classe abstraite
+│   │   ├── Empruntable.java         # Interface
+│   │   ├── Livre.java               # Classe concrète
+│   │   ├── Magazine.java            # Classe concrète
+│   │   ├── Personne.java            # Classe abstraite
+│   │   ├── Membre.java              # Classe concrète
+│   │   └── Emprunt.java             # Classe concrète
+│   │
+│   ├── dao/                          # COUCHE DAO
+│   │   ├── DAO.java                 # Interface générique <T>
+│   │   ├── LivreDAO.java            # Interface spécifique
+│   │   ├── MembreDAO.java           # Interface spécifique
+│   │   ├── EmpruntDAO.java          # Interface spécifique
+│   │   └── impl/                    # Implémentations
+│   │       ├── LivreDAOImpl.java
+│   │       ├── MembreDAOImpl.java
+│   │       └── EmpruntDAOImpl.java
+│   │
+│   ├── service/                      # COUCHE SERVICE
+│   │   ├── BibliothequeService.java # Logique livres/membres
+│   │   └── EmpruntService.java      # Logique emprunts
+│   │
+│   ├── controller/                   # COUCHE CONTRÔLEUR
+│   │   ├── MainController.java
+│   │   ├── LivreController.java
+│   │   ├── MembreController.java
+│   │   └── EmpruntController.java
+│   │
+│   ├── util/                         # UTILITAIRES
+│   │   ├── DatabaseConnection.java  # Singleton - Connexion BD
+│   │   ├── StringValidator.java     # Validation des données
+│   │   └── DateUtils.java           # Opérations sur dates
+│   │
+│   └── exception/                    # EXCEPTIONS PERSONNALISÉES
+│       ├── ValidationException.java
+│       ├── LivreIndisponibleException.java
+│       ├── MembreInactifException.java
+│       └── LimiteEmpruntDepasseeException.java
+│
+├── src/main/resources/
+│   └── fxml/                         # FICHIERS JAVAFX
+│       ├── main.fxml                 # Interface principale (TabPane)
+│       ├── livres.fxml              # Tab Livres
+│       ├── membres.fxml             # Tab Membres
+│       └── emprunts.fxml            # Tab Emprunts
+│
+└── src/test/java/com/bibliotheque/  # TESTS UNITAIRES (à développer)
+
+
+ARCHITECTURE EN COUCHES
+======================
+
+┌──────────────────────────────────┐
+│    COUCHE PRÉSENTATION (JavaFX)  │
+│  ├─ MainController               │
+│  ├─ LivreController              │
+│  ├─ MembreController             │
+│  └─ EmpruntController            │
+└──────────────────────────────────┘
+                 ↓
+┌──────────────────────────────────┐
+│    COUCHE SERVICE (Métier)       │
+│  ├─ BibliothequeService          │
+│  └─ EmpruntService               │
+│     (Validations, Règles)        │
+└──────────────────────────────────┘
+                 ↓
+┌──────────────────────────────────┐
+│    COUCHE DAO (Données)          │
+│  ├─ LivreDAOImpl                  │
+│  ├─ MembreDAOImpl                 │
+│  └─ EmpruntDAOImpl                │
+│     (CRUD avec PreparedStatement) │
+└──────────────────────────────────┘
+                 ↓
+┌──────────────────────────────────┐
+│    BASE DE DONNÉES MySQL         │
+│  ├─ livres                       │
+│  ├─ membres                      │
+│  └─ emprunts                     │
+└──────────────────────────────────┘
+
+
+FLUX DE DONNÉES - Exemple : Emprunter un Livre
+==============================================
+
+1. LivreController.handleEmprunter()
+   │
+   └─→ 2. EmpruntService.emprunterLivre(isbn, membreId)
+        │
+        ├─→ Validation (membre actif, livre disponible, limite)
+        │
+        ├─→ 3. MembreDAO.findByIntId(membreId)
+        │
+        ├─→ 4. LivreDAO.findByISBN(isbn)
+        │
+        ├─→ 5. EmpruntDAO.save(emprunt)
+        │
+        └─→ 6. LivreDAO.update(livre) [marquer indisponible]
+        
+   └─→ 7. Afficher alerte succès au contrôleur
+
+
+TECHNOLOGIES UTILISÉES
+====================
+
+Backend :
+- Java 17+
+- Maven 3.6+
+- MySQL 8.0+
+
+Frontend :
+- JavaFX 21
+- FXML
+
+Base de Données :
+- MySQL avec driver mysql-connector-java 8.0.33
+
+Tests :
+- JUnit 5.9.3
+
+Design Patterns :
+- Singleton (DatabaseConnection)
+- DAO (Data Access Object)
+- MVC (Model-View-Controller)
+- Factory Pattern (implicite)
+
+
+DÉPENDANCES PRINCIPALES
+=======================
+
+1. org.openjfx:javafx-controls:21
+2. org.openjfx:javafx-fxml:21
+3. mysql:mysql-connector-java:8.0.33
+4. org.junit.jupiter:junit-jupiter:5.9.3
+
+
+POINTS CLÉS D'IMPLÉMENTATION
+============================
+
+1. ✅ PreparedStatement uniquement (sécurité SQL injection)
+2. ✅ Singleton avec Double-Checked Locking (thread-safe)
+3. ✅ Exceptions personnalisées pour la logique métier
+4. ✅ Validation stricte des données avant insertion
+5. ✅ Encapsulation complète (private + getters/setters)
+6. ✅ JavaDoc sur toutes les méthodes publiques
+7. ✅ Gestion des ressources avec try-with-resources
+8. ✅ Architecture en couches stricte (Controller ≠ DAO directement)
+9. ✅ Héritage et polymorphisme (Document, Personne, Empruntable)
+10. ✅ Injection de dépendances dans les services
+
+
+DONNÉES DE TEST
+===============
+
+Livres (3) :
+- 978-2070361563 : Le Seigneur des Anneaux (Tolkien, 1954)
+- 978-2070368945 : Harry Potter (Rowling, 1998)
+- 978-2253121138 : Les Misérables (Victor Hugo, 1862)
+
+Membres (3) :
+- Jean Dupont (jean.dupont@example.com) - Actif
+- Marie Martin (marie.martin@example.com) - Actif
+- Pierre Bernard (pierre.bernard@example.com) - Inactif
+
+
+PROCHAINES ÉTAPES (Optionnelles)
+===============================
+
+1. Ajouter des tests unitaires avec JUnit 5
+2. Implémenter un système de logging (SLF4J + Logback)
+3. Ajouter la gestion des utilisateurs avec authentification
+4. Implémenter des rapports (PDF/Excel)
+5. Ajouter des graphiques de statistiques
+6. Implémenter la pagination pour les listes
+7. Ajouter une API REST (Spring Boot)
+8. Déploiement en conteneur Docker
+
+
+VERSION INITIALE
+================
+
+Créé : 26 Décembre 2024
+Version : 1.0.0
+Status : Infrastructure complète, prête pour développement
+
+Tous les fichiers de base sont générés et prêts à l'emploi !
