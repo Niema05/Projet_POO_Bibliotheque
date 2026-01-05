@@ -159,7 +159,7 @@ public class BibliothequeService {
         int membresActifs = membreDAO.findActifs().size();
         
         StringBuilder stats = new StringBuilder();
-        stats.append("📊 STATISTIQUES\n");
+        stats.append("📊STATISTIQUES\n");
         stats.append("================\n");
         stats.append("Livres totaux: ").append(totalLivres).append("\n");
         stats.append("Livres disponibles: ").append(livresDisponibles).append("\n");
@@ -171,4 +171,5 @@ public class BibliothequeService {
         return stats.toString();
     }
 }
+
 
