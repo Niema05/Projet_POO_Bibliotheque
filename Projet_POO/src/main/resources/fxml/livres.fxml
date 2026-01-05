@@ -6,9 +6,9 @@
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
     fx:controller="com.bibliotheque.controller.LivreController" spacing="15" style="-fx-padding: 15; -fx-background-color: #f5f7fa;" fx:id="livrePane">
     
-    <!-- Formulaire d'ajout/modification -->
+
     <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-border-width: 1;">
-        <Label text="📝 Formulaire de Livre" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
+        <Label text=" Formulaire de Livre" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
         
         <GridPane hgap="15" vgap="12" style="-fx-padding: 10 0 0 0;">
             <columnConstraints>
@@ -37,13 +37,13 @@
             <Label text="Disponible:" style="-fx-font-weight: bold; -fx-text-fill: #34495e;" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
             <CheckBox fx:id="cbDisponible" GridPane.columnIndex="3" GridPane.rowIndex="2" selected="true"/>
             
-            <!-- Boutons -->
+            
             <HBox spacing="10" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="3" style="-fx-padding: 15 0 0 0;">
-                <Button fx:id="btnAjouter" text="✓ Ajouter" onAction="#handleAjouter" 
+                <Button fx:id="btnAjouter" text=" Ajouter" onAction="#handleAjouter" 
                         style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;"/>
-                <Button fx:id="btnModifier" text="✎ Modifier" onAction="#handleModifier" 
+                <Button fx:id="btnModifier" text=" Modifier" onAction="#handleModifier" 
                         style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;"/>
-                <Button fx:id="btnSupprimer" text="✕ Supprimer" onAction="#handleSupprimer" 
+                <Button fx:id="btnSupprimer" text=" Supprimer" onAction="#handleSupprimer" 
                         style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;"/>
             </HBox>
         </GridPane>
@@ -51,7 +51,7 @@
     
     <!-- Barre de recherche -->
     <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-border-width: 1;">
-        <Label text="🔍 Recherche" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
+        <Label text=" Recherche" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
         
         <HBox spacing="10" style="-fx-padding: 10 0 0 0;">
             <TextField fx:id="tfRecherche" HBox.hgrow="ALWAYS" 
@@ -59,7 +59,7 @@
             <Button fx:id="btnRechercher" text="Rechercher" 
                     style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;" 
                     onAction="#handleRechercher" prefWidth="120"/>
-            <Button text="📊 Statistiques" 
+            <Button text=" Statistiques" 
                     style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-border-radius: 4; -fx-cursor: hand;" 
                     onAction="#handleStatistiques" prefWidth="140"/>
         </HBox>
@@ -67,7 +67,7 @@
     
     <!-- Tableau des livres -->
     <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-radius: 5; -fx-border-width: 1;" VBox.vgrow="ALWAYS">
-        <Label text="📚 Liste des Livres" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
+        <Label text=" Liste des Livres" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 10 0 10 0; -fx-border-color: #3498db; -fx-border-width: 0 0 2 0;"/>
         
         <TableView fx:id="tableViewLivres" VBox.vgrow="ALWAYS" style="-fx-padding: 10 0 0 0;">
             <columns>
@@ -81,3 +81,4 @@
         </TableView>
     </VBox>
 </VBox>
+
