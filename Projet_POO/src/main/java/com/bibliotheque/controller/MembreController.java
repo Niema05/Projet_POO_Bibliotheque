@@ -12,9 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- * Contrôleur pour la gestion des membres.
- */
+
 public class MembreController {
 
     @FXML
@@ -64,11 +62,7 @@ public class MembreController {
         colDateInscription.setCellValueFactory(cell -> new javafx.beans.property.ReadOnlyObjectWrapper<>(cell.getValue() != null ? cell.getValue().getDateInscription() : null));
     }
 
-    /**
-     * Définit le service.
-     *
-     * @param service le service de bibliothèque
-     */
+    
     public void setService(BibliothequeService service) {
         System.out.println("DEBUG: setService() called in MembreController");
         this.service = service;
@@ -79,16 +73,10 @@ public class MembreController {
         }
     }
 
-    /**
-     * Refresh data from service (public entrypoint for external triggers).
-     */
+    
     public void refreshData() {
         chargerMembres();
     }
-
-    /**
-     * Charge tous les membres dans le tableau.
-     */
     private void chargerMembres() {
         if (service == null) {
             System.err.println("DEBUG: chargerMembres() called but service is null!");
@@ -114,9 +102,6 @@ public class MembreController {
         }
     }
 
-    /**
-     * Ajoute un nouveau membre.
-     */
     @FXML
     public void handleAjouter() {
         try {
@@ -137,10 +122,6 @@ public class MembreController {
             afficherErreur("Erreur de base de données", e.getMessage());
         }
     }
-
-    /**
-     * Modifie le membre sélectionné.
-     */
     @FXML
     public void handleModifier() {
         Membre selected = tableViewMembres.getSelectionModel().getSelectedItem();
@@ -167,9 +148,6 @@ public class MembreController {
         }
     }
 
-    /**
-     * Supprime le membre sélectionné.
-     */
     @FXML
     public void handleSupprimer() {
         Membre selected = tableViewMembres.getSelectionModel().getSelectedItem();
@@ -190,9 +168,7 @@ public class MembreController {
         }
     }
 
-    /**
-     * Recherche des membres.
-     */
+
     @FXML
     public void handleRechercher() {
         String critere = tfRecherche.getText();
@@ -210,9 +186,7 @@ public class MembreController {
         }
     }
 
-    /**
-     * Affiche l'historique des emprunts du membre sélectionné.
-     */
+    
     @FXML
     public void handleHistoriqueEmprunts() {
         Membre selected = tableViewMembres.getSelectionModel().getSelectedItem();
@@ -229,10 +203,6 @@ public class MembreController {
             afficherErreur("Erreur", "Impossible de charger l'historique : " + e.getMessage());
         }
     }
-
-    /**
-     * Nettoie le formulaire.
-     */
     private void nettoyerFormulaire() {
         tfNom.clear();
         tfPrenom.clear();
@@ -240,9 +210,7 @@ public class MembreController {
         cbActif.setSelected(true);
     }
 
-    /**
-     * Affiche une alerte d'erreur.
-     */
+    
     private void afficherErreur(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titre);
@@ -250,9 +218,6 @@ public class MembreController {
         alert.showAndWait();
     }
 
-    /**
-     * Affiche une alerte de succès.
-     */
     private void afficherSucces(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);
@@ -260,3 +225,4 @@ public class MembreController {
         alert.showAndWait();
     }
 }
+
