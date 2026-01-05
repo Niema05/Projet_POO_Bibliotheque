@@ -13,9 +13,8 @@ import javafx.scene.input.KeyCode;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Contrôleur pour la gestion des livres.
- */
+// Contrôleur pour la gestion des livres.
+ 
 public class LivreController {
 
     @FXML
@@ -55,9 +54,8 @@ public class LivreController {
 
     private BibliothequeService service;
 
-    /**
-     * Initialise le contrôleur.
-     */
+    // Initialise le contrôleur.
+     
     @FXML
     public void initialize() {
         // Configure les colonnes du TableView (cell factories explicites pour fiabilité)
@@ -82,11 +80,8 @@ public class LivreController {
         });
     }
 
-    /**
-     * Définit le service.
-     *
-     * @param service le service de bibliothèque
-     */
+    // Définit le service.
+     
     public void setService(BibliothequeService service) {
         System.out.println("DEBUG: setService() called in LivreController");
         this.service = service;
@@ -98,16 +93,14 @@ public class LivreController {
         }
     }
 
-    /**
-     * Refresh data from service (public entrypoint for external triggers).
-     */
+    // Refresh data from service (public entrypoint for external triggers).
+     
     public void refreshData() {
         chargerLivres();
     }
 
-    /**
-     * Charge tous les livres dans le tableau.
-     */
+    // Charge tous les livres dans le tableau.
+     
     private void chargerLivres() {
         if (service == null) {
             System.err.println("DEBUG: chargerLivres() called but service is null!");
@@ -134,9 +127,8 @@ public class LivreController {
         }
     }
 
-    /**
-     * Ajoute un nouveau livre.
-     */
+    // Ajoute un nouveau livre.
+     
     @FXML
     public void handleAjouter() {
         try {
@@ -159,9 +151,8 @@ public class LivreController {
         }
     }
 
-    /**
-     * Modifie le livre sélectionné.
-     */
+    // Modifie le livre sélectionné.
+     
     @FXML
     public void handleModifier() {
         Livre selected = tableViewLivres.getSelectionModel().getSelectedItem();
@@ -188,9 +179,8 @@ public class LivreController {
         }
     }
 
-    /**
-     * Supprime le livre sélectionné.
-     */
+    // Supprime le livre sélectionné.
+     
     @FXML
     public void handleSupprimer() {
         Livre selected = tableViewLivres.getSelectionModel().getSelectedItem();
@@ -209,9 +199,8 @@ public class LivreController {
         }
     }
 
-    /**
-     * Recherche des livres.
-     */
+    //Recherche des livres.
+     
     @FXML
     public void handleRechercher() {
         String critere = tfRecherche.getText();
@@ -229,9 +218,7 @@ public class LivreController {
         }
     }
 
-    /**
-     * Affiche les statistiques de la bibliothèque.
-     */
+    //Affiche les statistiques de la bibliothèque.
     @FXML
     public void handleStatistiques() {
         try {
@@ -242,9 +229,8 @@ public class LivreController {
         }
     }
 
-    /**
-     * Remplit le formulaire avec les données d'un livre sélectionné.
-     */
+    //Remplit le formulaire avec les données d'un livre sélectionné.
+     
     private void remplirFormulaire(Livre livre) {
         tfISBN.setText(livre.getIsbn());
         tfTitre.setText(livre.getTitre());
@@ -253,9 +239,8 @@ public class LivreController {
         cbDisponible.setSelected(livre.isDisponible());
     }
 
-    /**
-     * Nettoie le formulaire.
-     */
+    // Nettoie le formulaire.
+     
     private void nettoyerFormulaire() {
         tfISBN.clear();
         tfTitre.clear();
@@ -263,9 +248,8 @@ public class LivreController {
         cbDisponible.setSelected(true);
     }
 
-    /**
-     * Affiche une alerte d'erreur.
-     */
+    // Affiche une alerte d'erreur.
+     
     private void afficherErreur(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titre);
@@ -273,9 +257,8 @@ public class LivreController {
         alert.showAndWait();
     }
 
-    /**
-     * Affiche une alerte de succès.
-     */
+    // Affiche une alerte de succès.
+     
     private void afficherSucces(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);
@@ -283,3 +266,4 @@ public class LivreController {
         alert.showAndWait();
     }
 }
+
