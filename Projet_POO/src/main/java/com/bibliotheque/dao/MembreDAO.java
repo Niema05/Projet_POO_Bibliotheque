@@ -17,19 +17,10 @@ public interface MembreDAO extends DAO<Membre> {
      * return une liste de membres actifs
      */
     List<Membre> findActifs() throws SQLException;
-
-    /**
-     * Recherche un membre par son ID (int).
-     * return le membre trouvé, null sinon
-     */
-    Membre findByIntId(int id) throws SQLException;
-
-    /**
-     * Vérifie si un email existe déjà dans la base de données.
-     * return true si l'email existe, false sinon
-     */
+   
     boolean existsByEmail(String email) throws SQLException;
 }
+
 
 
 
