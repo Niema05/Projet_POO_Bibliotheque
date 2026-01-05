@@ -3,9 +3,8 @@ package com.bibliotheque.model;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-/**
- * Classe représentant un emprunt dans la bibliothèque.
- */
+// Classe représentant un emprunt dans la bibliothèque.
+ 
 public class Emprunt {
     private int id;
     private LocalDate dateEmprunt;
@@ -15,14 +14,8 @@ public class Emprunt {
     private Livre livre;
     private Membre membre;
 
-    /**
-     * Constructeur d'un emprunt sans ID.
-     *
-     * @param dateEmprunt            la date d'emprunt
-     * @param dateRetourPrevue       la date de retour prévue
-     * @param livre                  le livre emprunté
-     * @param membre                 le membre qui emprunte
-     */
+    // Constructeur d'un emprunt sans ID.
+   
     public Emprunt(LocalDate dateEmprunt, LocalDate dateRetourPrevue, Livre livre, Membre membre) {
         this.dateEmprunt = dateEmprunt;
         this.dateRetourPrevue = dateRetourPrevue;
@@ -32,17 +25,8 @@ public class Emprunt {
         this.membre = membre;
     }
 
-    /**
-     * Constructeur d'un emprunt avec ID.
-     *
-     * @param id                     l'identifiant de l'emprunt
-     * @param dateEmprunt            la date d'emprunt
-     * @param dateRetourPrevue       la date de retour prévue
-     * @param dateRetourEffective    la date de retour effective
-     * @param penalite               la pénalité de retard
-     * @param livre                  le livre emprunté
-     * @param membre                 le membre qui emprunte
-     */
+    // Constructeur d'un emprunt avec ID.
+   
     public Emprunt(int id, LocalDate dateEmprunt, LocalDate dateRetourPrevue, 
                    LocalDate dateRetourEffective, double penalite, Livre livre, Membre membre) {
         this.id = id;
@@ -54,11 +38,8 @@ public class Emprunt {
         this.membre = membre;
     }
 
-    /**
-     * Calcule le nombre de jours de retard.
-     *
-     * @return le nombre de jours de retard, 0 si pas de retard
-     */
+    // Calcule le nombre de jours de retard.
+    
     public long calculerJoursRetard() {
         if (dateRetourEffective == null) {
             return 0;
@@ -67,21 +48,15 @@ public class Emprunt {
         return Math.max(0, jours);
     }
 
-    /**
-     * Calcule la pénalité basée sur les jours de retard.
-     *
-     * @return la pénalité en DH
-     */
+    // Calcule la pénalité basée sur les jours de retard.
+  
     public double calculerPenalite() {
         long joursRetard = calculerJoursRetard();
         return joursRetard * livre.calculerPenaliteRetard();
     }
 
-    /**
-     * Vérifie si l'emprunt est en retard.
-     *
-     * @return true si en retard, false sinon
-     */
+    // Vérifie si l'emprunt est en retard.
+     
     public boolean estEnRetard() {
         if (dateRetourEffective == null) {
             return LocalDate.now().isAfter(dateRetourPrevue);
@@ -159,3 +134,4 @@ public class Emprunt {
                 '}';
     }
 }
+
