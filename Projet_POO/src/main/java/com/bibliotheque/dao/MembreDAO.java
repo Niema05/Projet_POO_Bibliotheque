@@ -9,11 +9,7 @@ import java.util.List;
  */
 public interface MembreDAO extends DAO<Membre> {
     /**
-     * Recherche un membre par email.
-     *
-     * @param email l'email du membre
-     * @return le membre trouvé, null sinon
-     * @throws SQLException si une erreur SQL survient
+     * throws SQLException si une erreur SQL survient
      */
     void save(Membre membre) throws SQLException();
     void update(Membre membre) throws SQLException();
@@ -23,28 +19,24 @@ public interface MembreDAO extends DAO<Membre> {
 
     /**
      * Récupère tous les membres actifs.
-     *
-     * @return une liste de membres actifs
-     * @throws SQLException si une erreur SQL survient
+     * return une liste de membres actifs
+     * throws SQLException si une erreur SQL survient
      */
     List<Membre> findActifs() throws SQLException;
 
     /**
      * Recherche un membre par son ID (int).
-     *
-     * @param id l'identifiant du membre
-     * @return le membre trouvé, null sinon
-     * @throws SQLException si une erreur SQL survient
+     * return le membre trouvé, null sinon
+     * throws SQLException si une erreur SQL survient
      */
     Membre findByIntId(int id) throws SQLException;
 
     /**
      * Vérifie si un email existe déjà dans la base de données.
-     *
-     * @param email l'email à vérifier
-     * @return true si l'email existe, false sinon
-     * @throws SQLException si une erreur SQL survient
+     * return true si l'email existe, false sinon
+     * throws SQLException si une erreur SQL survient
      */
     boolean existsByEmail(String email) throws SQLException;
 }
+
 
